@@ -10,6 +10,14 @@ app.get("/albums", function (request, response) {
   console.log("Request to get all albums");
 });
 
+app.get("/albums/:albumId", function (request, response) {
+  const albumID = request.params.albumId;
+  const selectedAlbum = albumsData.filter((album) => album.albumId === albumID);
+  response.send(selectedAlbum);
+//   response.send(request.params.albumId + request.query.key);
+  console.log("Request to get one albums");
+});   
+
 app.listen(PORT, function () {
   console.log(`Server is listening on port ${PORT}. Ready to accept requests!`);
 });
