@@ -18,6 +18,12 @@ app.get("/albums/:albumId", function (request, response) {
   console.log("Request to get one albums");
 });   
 
+app.post("/albums", function (request, response) {
+  const newAlbum = request.body;
+  albumsData.push(newAlbum);
+  response.send("successful");
+});
+
 app.listen(PORT, function () {
   console.log(`Server is listening on port ${PORT}. Ready to accept requests!`);
 });
