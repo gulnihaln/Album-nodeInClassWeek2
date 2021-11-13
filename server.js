@@ -24,6 +24,15 @@ app.post("/albums", function (request, response) {
   response.send("successful");
 });
 
+app.delete("/albums/:albumID", function (req, res) {
+  const index = albumsData.findIndex(
+    (album) => album.albumId === req.params.albumId
+  );
+  albumsData.splice(index, 1);
+  res.send("Delete is successful");
+  console.log("DELETE /albums route");
+});
+
 app.listen(PORT, function () {
   console.log(`Server is listening on port ${PORT}. Ready to accept requests!`);
 });
