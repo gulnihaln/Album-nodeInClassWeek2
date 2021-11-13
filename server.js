@@ -24,6 +24,18 @@ app.post("/albums", function (request, response) {
   response.send("successful");
 });
 
+app.put("/albums/:albumId", function (request, response) {
+  const albumID = request.params.albumId;
+  const selectedAlbum = albumsData.find(album => album.albumId === albumID)
+  if(selectedAlbum === undefined){
+    return response.status(400).send(`This id of ${albumId} doesn't exist`)
+  }else{
+    const {artistName} = request.body
+    selectedAlbum.artistName = artistName
+  }
+  response.json({msg: `artistName is updated `, selectedAlbum})
+});
+
 app.delete("/albums/:albumID", function (req, res) {
   const index = albumsData.findIndex(
     (album) => album.albumId === req.params.albumId
